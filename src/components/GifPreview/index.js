@@ -1,26 +1,74 @@
 import React from 'react';
-import {Image, View, Text} from 'react-native';
+import {View, Image, StyleSheet} from 'react-native';
 
 class GifPreview extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            thumbLoaded: false,
+            gifLoaded: false
+        }
     }
 
     render() {
         return(
-            <Image
-                source={{
-                        uri: this.props.gif
-                }}
-                style={{
-                    height: 300,
-                    flex: 1,
-                    marginTop: 10,
-                    marginLeft: 10,
-                    marginRight: 10
-                }}
-            />
+            <View style={styles.container} >
+                <View style={styles.wrapper}>
+                    <Image
+                        source={{
+                            uri: this.state.thumbLoaded ? this.props.gif.gif : ''
+                        }}
+                        style={styles.gif}
+                        onLoadEnd={() => {
+                            this.setState({gifLoaded: true});
+                            console.log('gif loaded');
+                            this.props.next();
+                        }}
+                    />
+                </View>
+                <View style={this.state.gifLoaded ? styles.wrapperHidden : styles.wrapper}>
+                    <Image
+                        source={{uri: this.props.gif.thumb }}
+                        style={ styles.thumb}
+                        onLoad={() => {
+                            this.setState({thumbLoaded: true});
+                        }}
+                    />
+                </View>
+            </View>
         )
     }
 }
+
+const styles = StyleSheet.create({
+    container:{
+        position: 'relative',
+        flex: 1,
+        height: 300,
+        backgroundColor: 'red',
+        marginTop: 10,
+        marginLeft: 10,
+        marginRight: 10,
+    },
+    wrapper: {
+        backgroundColor: '#e3e3e3',
+        position: 'absolute',
+        height: 300,
+        width: '100%',
+        top: 0,
+        left: 0
+    },
+    wrapperHidden: {
+        display: 'none'
+    },
+    gif: {
+        height: 300,
+        flex: 1,
+    },
+    thumb: {
+        height: 300,
+        flex: 1
+    }
+});
+
 export default GifPreview;
