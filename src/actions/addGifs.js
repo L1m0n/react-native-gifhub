@@ -1,9 +1,9 @@
 import {ADD_GIFS} from './actionTypes';
 
-const addGifs = (gifs) => {
+const addGifs = (data) => {
     return {
         type: ADD_GIFS,
-        gifs
+        data
     }
 };
 

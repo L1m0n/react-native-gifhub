@@ -16,17 +16,12 @@ class GifPreview extends React.Component {
                 <View style={styles.wrapper}>
                     <Image
                         source={{
-                            uri: this.state.thumbLoaded ? this.props.gif.gif : ''
+                            uri: this.props.gif.gif
                         }}
                         style={styles.gif}
-                        onLoadEnd={() => {
-                            this.setState({gifLoaded: true});
-                            console.log('gif loaded');
-                            this.props.next();
-                        }}
                     />
                 </View>
-                <View style={this.state.gifLoaded ? styles.wrapperHidden : styles.wrapper}>
+                {/*<View style={this.state.gifLoaded ? styles.wrapperHidden : styles.wrapper}>
                     <Image
                         source={{uri: this.props.gif.thumb }}
                         style={ styles.thumb}
@@ -34,7 +29,7 @@ class GifPreview extends React.Component {
                             this.setState({thumbLoaded: true});
                         }}
                     />
-                </View>
+                </View>*/}
             </View>
         )
     }
