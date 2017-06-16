@@ -9,7 +9,14 @@ class GifPreview extends React.Component {
             gifLoaded: false
         }
     }
-
+    showGif() {
+        const self= this;
+        setTimeout(function () {
+            self.setState({
+                gifLoaded: true
+            })
+        }, 1000);
+    }
     render() {
         return(
             <View style={styles.container} >
@@ -19,17 +26,18 @@ class GifPreview extends React.Component {
                             uri: this.props.gif.gif
                         }}
                         style={styles.gif}
+                        onLoad={this.showGif.bind(this)}
                     />
                 </View>
-                {/*<View style={this.state.gifLoaded ? styles.wrapperHidden : styles.wrapper}>
+                <View style={this.state.gifLoaded ? styles.wrapperHidden : styles.wrapper}>
                     <Image
-                        source={{uri: this.props.gif.thumb }}
+                        source={{uri: 'https://media.giphy.com/media/nZQIwSpCXFweQ/giphy.gif' }}
                         style={ styles.thumb}
                         onLoad={() => {
                             this.setState({thumbLoaded: true});
                         }}
                     />
-                </View>*/}
+                </View>
             </View>
         )
     }
@@ -46,7 +54,7 @@ const styles = StyleSheet.create({
         marginRight: 10,
     },
     wrapper: {
-        backgroundColor: '#e3e3e3',
+        backgroundColor: '#5e4675',
         position: 'absolute',
         height: 300,
         width: '100%',
