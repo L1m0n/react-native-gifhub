@@ -3,8 +3,8 @@ import {createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import reducer from '../../reducers';
 import {Provider} from 'react-redux';
-import GifsList from '../GifsList';
-import logger from 'redux-logger';
+import logger from 'redux-logger'
+import HomeScreen from '../HomeScreen';
 
 const store = createStore(
     reducer,
@@ -20,7 +20,7 @@ class App extends React.Component {
     render() {
         return(
         <Provider store={store}>
-            <GifsList/>
+            <HomeScreen/>
         </Provider>
         )
     }

@@ -7,6 +7,15 @@ const gifs = (state = {gifs: []}, action) => {
                 offset: action.data.offset,
                 gifs: state.gifs.concat(action.data.gifs)
             });
+        case actionTypes.SET_QUERY:
+            return Object.assign({}, state, {
+                query: action.query
+            });
+        case actionTypes.SET_GIFS:
+            return Object.assign({}, state, {
+                offset: action.data.offset,
+                gifs: action.data.gifs
+            });
         default:
             return state;
     }

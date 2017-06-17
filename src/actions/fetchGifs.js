@@ -16,16 +16,7 @@ const fetchGifs = (offset, category, query) => {
                             })
                     })
                 };
-                /*for (let i = 0; i < json.data.length; i +=1) {
-                    data.push({
-                        id: json.data[i].id,
-                        gif: json.data[i].images.downsized.url,
-                        thumb: json.data[i].images.downsized_still.url,
-                        url: json.data[i].url
-                    });
-                }*/
                 dispatch(addGifs(data));
-                //console.log(data);
             })
             .catch((err)=> console.log(err))
     }
