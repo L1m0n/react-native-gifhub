@@ -19,7 +19,10 @@ class presenter extends Component {
                         underlineColorAndroid="transparent"
                         placeholder="Type for search"
                         onChangeText={(text) => this.setState({text})}
-                        onSubmitEditing={()=>this.props.search(this.state.text)}
+                        onSubmitEditing={()=>{
+                            this.props.search(this.state.text);
+                            this.props.triggerScroll();
+                        }}
                     />
                     <Icon
                         style={styles.icon}

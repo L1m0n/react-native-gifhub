@@ -14,10 +14,12 @@ const search = (query) => {
                             id: gif.id,
                             gif: gif.images.downsized.url,
                             thumb: gif.images.downsized_still.url,
-                            url: gif.url
+                            url: gif.url,
+                            size: gif.images.downsized.size
                         })
                     })
                 };
+                data.gifs = data.gifs.sort(function(a, b){return a.size - b.size});
                 dispatch(setGifs(data));
             })
             .catch((err)=> console.log(err))

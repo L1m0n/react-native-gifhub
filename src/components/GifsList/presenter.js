@@ -13,6 +13,9 @@ class presenter extends React.Component {
             images: []
         }
     }
+    showAlert(a){
+        this.refs.listview.scrollTo({x: 0, y: 0, animated: true});
+    }
 
     componentWillMount(){
         this.props.fetchGifs(0, 'gifs', 'cats');
@@ -43,8 +46,9 @@ class presenter extends React.Component {
             <View style={{ flex: 1}}>
                 <ListView
                     contentContainerStyle={{flexDirection: 'column', flexWrap: 'wrap'}}
-                    initialListSize={2}
+                    initialListSize={5}
                     enableEmptySections={true}
+                    ref="listview"
                     dataSource={dataSource}
                     renderRow={this._renderImage}
                     onEndReached={() => this.props.fetchGifs(this.props.offset, 'gifs', 'cats')}
