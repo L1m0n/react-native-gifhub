@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import fetchGifs from '../../actions/fetchGifs';
+import fetchGifs from '../../../actions/fetchGifs';
 import presenter from './presenter';
 
 const mapStateToProps = (state) => {

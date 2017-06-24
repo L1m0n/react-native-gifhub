@@ -1,9 +1,10 @@
-import GifsList from '../GifsList';
-import Search from '../Search';
+import GifsList from '../ComonComponents/GifsList';
+import Search from '../ComonComponents/Search';
+import Header from '../ComonComponents/Header';
 import React, {Component} from 'react';
 import {View, StyleSheet} from 'react-native';
 
-class HomeScreen extends Component {
+class SearchScreen extends Component {
     _scrollToTop(list){
         list.scrollTo({x: 0, y: 0, animated: true});
     }
@@ -15,6 +16,7 @@ class HomeScreen extends Component {
     render() {
         return(
             <View style={styles.container}>
+                <Header/>
                 <Search triggerScroll={this._triggerScroll.bind(this)}/>
                 <GifsList ref={instance => this.child = instance} scrollTo={this._scrollToTop} />
             </View>
@@ -24,8 +26,9 @@ class HomeScreen extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#4b204e'
+        backgroundColor: '#4b204e',
+        paddingTop: 70
     }
 });
 
-export default HomeScreen;
+export default SearchScreen;

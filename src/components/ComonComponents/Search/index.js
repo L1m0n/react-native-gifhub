@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import presenter from './presenter'
-import search from '../../actions/search'
+import search from '../../../actions/search'
 
 const mapStateToProps = (state) => {
     return {}

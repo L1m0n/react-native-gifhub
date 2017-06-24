@@ -1,6 +1,6 @@
 import React from 'react';
 import {ListView, View} from 'react-native';
-import GifPreview from '../GifPreview';
+import GifPreview from '../GifPreview/index';
 
 class presenter extends React.Component {
     constructor(props) {

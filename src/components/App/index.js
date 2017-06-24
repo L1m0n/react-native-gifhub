@@ -4,7 +4,7 @@ import thunk from 'redux-thunk';
 import reducer from '../../reducers';
 import {Provider} from 'react-redux';
 import logger from 'redux-logger'
-import HomeScreen from '../HomeScreen';
+import SearchScreen from '../SearchScreen';
 
 const store = createStore(
     reducer,
@@ -20,7 +20,7 @@ class App extends React.Component {
     render() {
         return(
         <Provider store={store}>
-            <HomeScreen/>
+            <SearchScreen/>
         </Provider>
         )
     }

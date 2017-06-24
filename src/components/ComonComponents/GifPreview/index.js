@@ -31,7 +31,7 @@ class GifPreview extends React.Component {
                 </View>
                 <View style={this.state.gifLoaded ? styles.wrapperHidden : styles.wrapper}>
                     <Image
-                        source={require('../../assets/images/spiner.gif')}
+                        source={require('../../../assets/images/spiner.gif')}
                         //source={{uri: 'https://media.giphy.com/media/nZQIwSpCXFweQ/giphy.gif' }}
                         style={ styles.thumb}
                         onLoad={() => {
