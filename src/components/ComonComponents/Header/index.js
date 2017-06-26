@@ -1,5 +1,5 @@
 import React from  'react';
-import {View, StyleSheet, TouchableOpacity, Dimensions, Animated } from 'react-native';
+import {PanResponder, View, StyleSheet, Text, TouchableOpacity, Dimensions, Animated } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 class Header extends React.Component {
@@ -12,6 +12,7 @@ class Header extends React.Component {
 
         this.overlayScale = new Animated.Value(0);
         this.overlayOpacity = new Animated.Value(0);
+        this.menuPosition = new Animated.Value(1000);
         this._menuToogle = this._menuToogle.bind(this);
     }
 
@@ -19,8 +20,15 @@ class Header extends React.Component {
         this.setState({
             opened: !this.state.opened
         });
-        //this.overlayScale.setValue(0);
         this.overlayOpacity.setValue(0);
+        this.menuPosition.setValue(-Dimensions.get("window").height);
+        Animated.timing(
+            this.menuPosition,
+            {
+                toValue: this.state.opened ? -Dimensions.get("window").height : 0,
+                duration: 500,
+            }
+        ).start();
         Animated.timing(
             this.overlayOpacity,
             {
@@ -41,11 +49,10 @@ class Header extends React.Component {
         let overlayOpacity = this.overlayOpacity;
         let overlayScale = this.overlayScale;
         return(
-            <View style={this.state.opened ? stylesMenuOpened.container : styles.container}>
-                <View style={styles.header}>
-
+            <View   style={this.state.opened ? stylesMenuOpened.container : styles.container}>
+                <View  style={styles.header}>
                 </View>
-                <Animated.View style={{
+                <Animated.View   style={{
                     position: 'absolute',
                     elevation: 15,
                     right: -965,
@@ -67,15 +74,39 @@ class Header extends React.Component {
                     style={styles.button}>
                     <Icon
                         style={styles.icon}
-                        name="navicon"
+                        name={this.state.opened ? "close" : "navicon"}
                         size={25}
                         color="#fff"
                     />
                 </TouchableOpacity>
-
-                <View style={styles.menu}>
-
-                </View>
+                <Animated.View
+                    style={{
+                        elevation: 18,
+                        zIndex: 3,
+                        //backgroundColor: '#000',
+                        paddingTop: 50,
+                        height: Dimensions.get("window").height,
+                        width: '100%',
+                        position: 'absolute',
+                        top: this.menuPosition,
+                        left: 0
+                    }} >
+                    <Text style={styles.menuItem}>
+                        Search
+                    </Text>
+                    <Text  style={styles.menuItem}>
+                        Explore
+                    </Text>
+                    <Text style={styles.menuItem}>
+                        Collection
+                    </Text>
+                    <Text style={styles.menuItem}>
+                        Sign in
+                    </Text>
+                    <Text style={styles.menuItem}>
+                        Signup
+                    </Text>
+                </Animated.View>
             </View>
         )
     }
@@ -97,8 +128,13 @@ const styles = StyleSheet.create({
         elevation: 5,
         //backgroundColor: '#000',
     },
-    menu: {
-
+    menuItem: {
+        color: '#fff',
+        paddingTop: 10,
+        paddingBottom: 10,
+        fontSize: 18,
+        textAlign: 'center',
+        zIndex: 4,
     },
     icon: {
         justifyContent: 'center'

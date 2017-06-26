@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, TextInput, StyleSheet} from 'react-native';
+import {PanResponder, View, TextInput, StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 class presenter extends Component {
@@ -12,9 +12,10 @@ class presenter extends Component {
 
     render(){
         return(
-            <View style={styles.wrapper}>
-                <View style={styles.container}>
+            <View  style={styles.wrapper}>
+                <View  style={styles.container}>
                     <TextInput
+
                         style={styles.textInput}
                         underlineColorAndroid="transparent"
                         placeholder="Type for search"
@@ -53,6 +54,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: '#333',
         paddingLeft: 10,
+        elevation: 0,
         zIndex: 2
     },
     icon: {
